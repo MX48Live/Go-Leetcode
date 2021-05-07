@@ -39,21 +39,21 @@ var nums = []int{0,0,1,1,1,2,2,3,3,4,4}
 
 func removeDuplicates(nums []int) int {
 
-	newLength := 1
-	fmt.Printf("Array 1: %v\n", nums)
+	newLength := 0
 	for i := 0; i < len(nums); i++ {
+		fmt.Printf("Position------------: %v\n", i)
 		if nums[i] != nums[newLength] {
 			
-			fmt.Printf("nums[i] 1: %v\n", nums[i]) 
+			fmt.Printf("Found not match!\n")
+			fmt.Printf("Array 1: %v\n", nums)
 			newLength++
 			nums[newLength] = nums[i]
-			fmt.Printf("nums[i] 2: %v\n\n", nums[newLength]) 
-			// fmt.Printf("nums[newLength]: %v = nums[i]: %v\n", nums[newLength], nums[i])
-			// fmt.Printf("Array 2: %v\n\n", nums) 
+			fmt.Printf("nums[newLength]: %v = nums[i]: %v\n", nums[newLength], nums[i])
+			fmt.Printf("Array 2: %v\n\n", nums) 
 		}
 	}
 
-	return newLength +1
+	return newLength + 1
 }
 
 func main() {
