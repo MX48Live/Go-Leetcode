@@ -26,6 +26,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 var nums = []int{2,2,2,3,4}
@@ -34,35 +35,29 @@ var nums = []int{2,2,2,3,4}
 // var nums = []int{1,2}
 // var nums = []int{3}
 // var nums = []int{2,2,3,1}
-
 func thirdMax(nums []int) int {
-	max1 := 0
-	max2 := 0
-	max3 := 0
-
-	for _, num := range nums {
-
-		if(num > max1) {
-			max3 = max2
-			max2 = max1
-			max1 = num
-		} else if (num == max1) {
-			continue
-		} else if(num > max2) {
-			max3 = max2
-			max2 = num
-		} else if (num == max2) {
-			continue
-		} else if (num > max3) {
-			max3 = num
-		} else if(num == max3) {
+	max, second, third := math.MinInt64, math.MinInt64, math.MinInt64
+    
+    for _, v := range nums {        
+		if v == max || v == second || v == third {
 			continue
 		}
+        
+        switch {
+        case v > max:
+            max, second, third = v, max, second
+        case v > second:
+            second, third = v, second
+        case v > third:
+            third = v
+        }
 	}
-	if(max3 == 0) {
-		return max1
+    
+	if third == math.MinInt64 {
+		return max
 	}
-	return max3
+    
+	return third
 }
 
 func main() {
